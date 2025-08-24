@@ -65,9 +65,6 @@ public class BookingService {
 
     public void cancelBooking(String bookingNumber) {
         Booking booking = bookingRepository.findByBookingNumber(bookingNumber);
-        if(!booking.getBookingStatus().equals(BookingStatus.RESERVED)){
-            throw new InvalidCancellationException("Flight Cannot be cancelled");
-        }
         booking.setBookingStatus(BookingStatus.CANCELED);
         bookingRepository.save(booking);
     }
